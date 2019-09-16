@@ -1,0 +1,58 @@
+void smAdd(term a[], term b[], term c[]) {		// 두 행렬 a, b. 합하는 행렬 c
+
+	int aCount = 1;
+	int bCount = 1;
+	int cCount = 1;
+
+	if (a[0].row == b[0].row && a[0].col == b[0].col) {
+		c[0].row = a[0].row;
+		c[0].col = a[0].col;
+		while(aCount <= a[0].value && bCount <= b[0].value) {
+			if(a[aCount].row < b[bCount].row) {		// row비교 a<b
+				c[cCount] = a[aCount];
+				aCount++;
+				cCount++;
+			}
+			else if(a[aCount].row > b[bCount].row) {		// row비교 a>b
+				c[cCount] = b[bCount];
+				bCount++;
+				cCount++;
+			}
+			else if(a[aCount].row = b[bCount].row) {		// row비교 a=b
+
+				if(a[aCount].col < b[bCount].col) {		// col비교 a<b
+					c[cCount] = a[aCount];
+					aCount++;
+					cCount++;
+				}
+				else if(a[aCount].col > b[bCount].col) {		// col비교 a>b
+					c[cCount] = b[bCount];
+					bCount++;
+					cCount++;
+				}
+				else if(a[aCount].col == b[bCount].col) {		// col비교 a=b
+					c[cCount] = b[bCount];
+					c[cCount].value = c[cCount].value + a[aCount].value;
+					aCount++;
+					bCount++;
+					cCount++;
+				}
+			}
+		}
+
+		while(aCount <= a[0].value) {
+			c[cCount] = a[aCount];
+			aCount++;
+			cCount++;
+		}
+		while(bCount <= b[0].value) {
+			c[cCount] = b[bCount];
+			bCount++;
+			cCount++;
+		}
+
+		c[0].value = cCount - 1;
+	}
+	else 
+		printf("행과 열의 갯수가 같아야 합니다,\n");
+}
