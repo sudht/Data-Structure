@@ -1,2 +1,2 @@
 # Data-Structure
-3학년 1학기 C
+C를 이용한 자료구조
